@@ -1,0 +1,3 @@
+<h1>Modify your album!</h1>
+<%= render "form", album: @album, band_id: @album.band.id %>
+<%= link_to "Back to Album", album_url(@album) %>

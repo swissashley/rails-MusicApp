@@ -1,0 +1,26 @@
+<% method = track.nil? ? "post" : "patch" %>
+<% action = track.nil? ? tracks_url : track_url(track) %>
+<% value = track.nil? ? "Create" : "Update" %>
+<form action="<%= action %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="track[album_id]" value="<%= album_id %>">
+  <label>Name:
+    <input type="text" name="track[name]" value="<%= track.name if track %>">
+  </label>
+  <label>Type:
+    <select name="track[track_type]">
+    <% Track::TRACK_TYPE.each do |track_type| %>
+      <option
+        <%= track.track_type == track_type ? "selected" : "" unless track.nil? %>
+        value="<%= track_type %>">
+        <%= track_type.upcase %>
+      </option>
+    <% end %>
+  </select>
+  </label>
+  <label>Lyric
+    <textarea name="track[lyric]" rows="8" cols="40"> <%= track.lyric unless track.nil? %> </textarea>
+  </label>
+  <input type="submit" name="create" value="<%= value %>">
+</form>

@@ -1,0 +1,23 @@
+<% method = album.nil? ? "post" : "patch" %>
+<% action = album.nil? ? albums_url : album_url(album) %>
+<% value = album.nil? ? "Create" : "Update" %>
+<form action="<%= action %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="album[band_id]" value="<%= band_id %>">
+  <label>Name:
+    <input type="text" name="album[name]" value="<%= album.name if album %>">
+  </label>
+  <label>Type:
+    <select name="album[album_type]">
+    <% Album::ALBUM_TYPE.each do |album_type| %>
+      <option
+        <%= album.album_type == album_type ? "selected" : "" unless album.nil? %>
+        value="<%= album_type %>">
+        <%= album_type.upcase %>
+      </option>
+    <% end %>
+  </select>
+  </label>
+  <input type="submit" name="create" value="<%= value %>">
+</form>

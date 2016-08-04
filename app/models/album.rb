@@ -18,6 +18,6 @@ class Album < ApplicationRecord
 
   belongs_to :band,
     dependent: :destroy
-    
+
   has_many :tracks
 end

@@ -1,0 +1,11 @@
+<% method = band.nil? ? "post" : "patch" %>
+<% action = band.nil? ? bands_url : band_url(band) %>
+<% value = band.nil? ? "Create" : "Update" %>
+<form action="<%= action %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%= method %>">
+  <label>Name:
+    <input type="text" name="band[name]" value="<%= band.name if band %>">
+  </label>
+  <input type="submit" name="create" value="<%= value %>">
+</form>

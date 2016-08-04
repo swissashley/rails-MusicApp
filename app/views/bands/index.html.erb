@@ -1,0 +1,14 @@
+<h1>Band List</h1>
+<ul>
+  <% @bands.each do |band| %>
+    <li><%= link_to band.name, band_url(band) %>
+        <%= link_to "(edit)", edit_band_url(band) %>
+        <%= link_to "  [dismiss]", band_url(band), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+
+<% if current_user %>
+  <%= button_to "Logout", session_url, method: :delete %>
+<% end %>

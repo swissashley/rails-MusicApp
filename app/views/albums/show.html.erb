@@ -1,0 +1,20 @@
+<h1>Album Name: <%= @album.name %></h1>
+<h2>Type: <%= @album.album_type %> </h2>
+<h2>Tracks: </h2>
+<ul>
+  <% index = 1 %>
+  <% @album.tracks.each do |track| %>
+  <li>
+    <%= link_to "#{index}. #{track.name}", track_url(track) %>
+    <%= link_to "(edit)", edit_track_url(track) %>
+    <%= link_to "  [delete]", track_url(track), method: :delete %>
+  </li>
+  <% index += 1 %>
+  <% end %>
+</ul>
+<%= link_to "Add a new track", new_album_track_url(@album) %>
+<%= link_to "Back to Band", band_url(@album.band) %>
+
+<% if current_user %>
+  <%= button_to "Logout", session_url, method: :delete %>
+<% end %>

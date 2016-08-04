@@ -1,0 +1,18 @@
+<h1>Hello <%= @band.name %></h1>
+
+<h2>Here is your released album: </h2>
+<ul>
+  <% @band.albums.each do |album| %>
+  <li><%= link_to album.name, album_url(album) %>
+    <%= link_to "(edit)", edit_album_url(album) %>
+    <%= link_to "  [delete]", album_url(album), method: :delete %>
+  </li>
+  <% end %>
+</ul>
+
+<%= link_to "Release a new album", new_band_album_url(@band) %>
+<%= link_to "Back to Band List", bands_url %>
+
+<% if current_user %>
+  <%= button_to "Logout", session_url, method: :delete %>
+<% end %>

@@ -1,0 +1,3 @@
+<h1>Modify your Track!</h1>
+<%= render "form", track: @track, album_id: @track.album.id %>
+<%= link_to "Back to Track", album_url(@track) %>
