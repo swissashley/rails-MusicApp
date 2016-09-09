@@ -4,6 +4,20 @@
 <p>
   <%= @track.lyric %>
 </p>
+<% if @track.notes %>
+  <h2>Notes: </h2>
+  <ul>
+    <% index = 1 %>
+    <% @track.notes.each do |note| %>
+    <li>
+      <%= link_to "#{index}. #{note.user.email}: " , user_url(note.user) %> <%= note.note_text %>
+      <%= link_to "  [delete]", note_url(note), method: :delete  if current_user.id == note.user.id %>
+    </li>
+    <% index += 1 %>
+    <% end %>
+  </ul>
+<% end %>
+<%= render "/notes/note"%>
 
 <%= link_to "Add a new track", new_album_track_url(@track) %>
 <%= link_to "Back to Album", album_url(@track.album) %>

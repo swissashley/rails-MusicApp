@@ -19,6 +19,8 @@ class Track < ApplicationRecord
   belongs_to :album,
     dependent: :destroy
 
+  has_many :notes
+
   has_one :band,
     through: :album,
     source: :band
